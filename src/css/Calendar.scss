@@ -1,0 +1,204 @@
+/*mixins*/
+@mixin contentCenteredX(){
+    text-align: center;
+}
+
+@mixin contentCenteredXY(){
+    text-align: center;
+    vertical-align: central;
+}
+
+@mixin BlockAndContentX(){
+    display: inline-block;
+    text-align: center;
+}
+/*------ end of mixins ----------*/
+
+/*variables*/
+$font-stack: Verdana, Helvetica, sans-serif;
+/*------ end of variables ----------*/
+
+/*general*/
+.Calendar{
+    box-shadow: 5px 5px 20px #c8c8c8;
+    margin: 1% 1%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-stack;
+}
+/*------ end of general ----------*/
+
+/*header*/
+.period {
+    @include contentCenteredX();
+    padding: 70px 25px;
+    width: 100%;
+    background: #0066cc;
+}
+
+#month, #year {
+    @include contentCenteredXY();
+    color: white;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+@media screen and (max-width: 1024px) {
+    #month, #year {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #month, #year {
+        font-size: 19px;
+    }
+}
+
+.period {
+    #prev, #next {
+        @include contentCenteredXY();
+        padding-top: 10px;
+        color: white;
+        font-size: 1.3em;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    #prev {
+        float: left;
+    }
+    #next {
+        float: right;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .period {
+        #prev, #next {
+            font-size: 1.2em;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .period {
+        #prev, #next {
+            font-size: 1.1em;
+        }
+    }
+}
+/*------ end of header ----------*/
+
+/*weekdays and days*/
+.weekdays {
+    @include contentCenteredX();
+    padding: 10px 0px;
+    background: #ddd;
+    display: inline-block;
+    margin: 0;
+    width: 100%;
+    th {
+        @include BlockAndContentX();
+        list-style: none;
+        width: 14.28%;
+        font-size: 17px;
+        color: #0066cc;
+        padding: 5px;
+        margin: 0 0;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .weekdays th {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .weekdays th {
+        font-size: 15px;
+    }
+}
+
+tbody {
+    @include BlockAndContentX();
+    background: white;
+    cursor: pointer;
+    td {
+        &.day.different-month{
+            color: #d7d7d7;
+        }
+        &:hover{
+            background: #f3f3f3;
+        }
+        @include BlockAndContentX();
+        list-style: none;
+        width: 14.28%;
+        font-size: 15px;
+        color: #7f7f7f;
+        font-weight: bold;
+        padding: 10px;
+        margin: 0 0;
+        border: 0.3px solid #ddd;
+        outline: 0.3px solid #ddd;
+    }
+
+    .today{
+        background: #acdbfb;
+        color: white;
+
+        &:hover{
+            background: #acdbfb;
+        }
+    } 
+
+    .selected {
+        background: #0483d7;
+        color: white;
+
+        &:hover{
+            background: #0483d7;
+        }
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+    tbody td {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    tbody td {
+        font-size: 14px;
+        padding: 5px;
+    }
+}
+/*------ end of weekdays and days----------*/
+
+/*-------- reset CSS formatting for a table -------*/
+table, caption, tbody, tfoot, thead, tr, th {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+table, thead, tr, th, tbody{
+    display: block;
+    border-spacing: 0px;
+}
+
+th{
+    font-weight: normal;
+}
+/*------ end reset CSS formatting for a table ----------*/
